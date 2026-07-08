@@ -1,4 +1,7 @@
- * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   background: #050505;
@@ -46,7 +49,7 @@ body {
   outline: none;
 }
 
-.login-box input:focus { border-color: #000000; }
+.login-box input:focus { border-color: #ffffff; }
 
 .login-box button {
   background: #0d5c0d;
@@ -68,3 +71,4 @@ body {
   font-size: 14px;
   min-height: 18px;
 }
+  
