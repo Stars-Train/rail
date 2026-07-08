@@ -9,27 +9,22 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
- :root{
-    --bg: #0b0b10;
-    --bg2: #0b0b0f;
-    --bg3: #171423;
-
-    --border: #44205e;
-    --border2: #6e1961;
-
-    --gold: #8d2eff;
-    --gold2: #6e1961;
-    --gold-dim: #b95dff;
-
+  :root {
+    --bg: #0d0b12;
+    --bg2: #130d1a;
+    --bg3: #160e1e;
+    --border: #2e1f3a;
+    --border2: #6b1a45;
+    --gold: #c4547a;
+    --gold2: #2e2459;
+    --gold-dim: #ad0e49;
     --text: #ffffff;
-    --text2: #b95dff;
-    --text3: #ffffff;
-
-    --red: #8b2087;
-    --red2: #a020a0;
-
+    --text2: #7a3060;
+    --text3: #e8d0da;
+    --red: #4a2060;
+    --red2: #8a4090;
     --radius: 6px;
-}
+  }
 
   body {
     font-family: 'Crimson Text', Georgia, serif;
@@ -55,11 +50,10 @@
     width: 100%;
     transition: border-color 0.2s;
   }
-  input:focus,
-  textarea:focus{
-    border-color:#b95dff;
-    box-shadow:0 0 8px rgba(185,93,255,.35);
-
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--gold-dim);
+    background: var(--bg3);
   }
   input[type="number"] { -moz-appearance: textfield; }
   input[type="number"]::-webkit-inner-spin-button { opacity: 0.3; }
@@ -77,14 +71,14 @@
   body.readonly .btn-danger,
   body.readonly .perk-remove,
   body.readonly #addExtraBtn,
-  body.readonly [data-save],
+  body.readonly .nav-footer .btn-primary[data-save],
   body.readonly .home-actions .btn-primary,
-  body.readonly .foto-slot-btns {
+  body.readonly .foto-actions {
     display: none !important;
   }
   .readonly-badge {
     display: none;
-    background: #180a2a;
+    background: #2a1a0a;
     border: 1px solid var(--gold-dim);
     color: var(--gold-dim);
     font-family: 'Cinzel', serif;
@@ -117,7 +111,7 @@
     font-size: 13px;
     letter-spacing: 0.5px;
   }
-  .btn-primary:hover { background: #23182a; color: var(--gold2); border-color: var(--gold); }
+  .btn-primary:hover { background: #2a2418; color: var(--gold2); border-color: var(--gold); }
 
   .btn-icon {
     padding: 5px 9px;
@@ -128,7 +122,7 @@
     justify-content: center;
   }
   .btn-danger { color: var(--red2); border-color: transparent; }
-  .btn-danger:hover { background: rgba(78, 32, 139, 0.15); border-color: var(--red); color: #a060e0; }
+  .btn-danger:hover { background: rgba(139,32,32,0.15); border-color: var(--red); color: #e06060; }
   .btn-add {
     border-style: dashed;
     border-color: var(--border2);
@@ -146,7 +140,7 @@
     font-size: 12px;
     padding: 5px 10px;
   }
-  .btn-logout:hover { color: var(--red2); border-color: var(--red); background: rgba(84, 32, 139, 0.1); }
+  .btn-logout:hover { color: var(--red2); border-color: var(--red); background: rgba(139,32,32,0.1); }
 
   .screen { display: none; }
   .screen.active { display: block; }
@@ -228,7 +222,6 @@
     font-size: 14px;
     color: var(--gold-dim);
     flex-shrink: 0;
-    overflow: hidden;
   }
   .ficha-name { font-size: 16px; font-weight: 600; color: var(--text); }
   .ficha-meta { font-size: 13px; color: var(--text3); margin-top: 2px; }
@@ -263,30 +256,18 @@
   .page-tab:hover { border-color: var(--gold-dim); color: var(--gold); }
   .page-tab.active { background: var(--bg3); border-color: var(--gold-dim); color: var(--gold); }
 
-  /* ── FOTOS (2 slots, arrastar p/ girar, clique p/ tela cheia) ── */
-  .foto-wrap { display: flex; gap: 18px; margin-bottom: 14px; flex-wrap: wrap; }
-  .foto-slot { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .foto-slot-label { font-family: 'Cinzel', serif; font-size: 10px; color: var(--text3); letter-spacing: 0.6px; text-transform: uppercase; }
+  /* Foto do personagem */
+  .foto-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
   .foto-preview {
-    width: 84px; height: 84px; border-radius: 50%; flex-shrink: 0;
+    width: 76px; height: 76px; border-radius: 50%; flex-shrink: 0;
     background: var(--bg2); border: 1px solid var(--border2);
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; font-size: 26px; color: var(--gold-dim);
-    cursor: grab; position: relative; user-select: none; touch-action: none;
   }
-  .foto-preview:active { cursor: grabbing; }
-  .foto-preview img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-  .foto-hint { font-size: 10px; color: var(--text3); opacity: 0.7; text-align: center; max-width: 100px; }
-  .foto-slot-btns { display: flex; gap: 4px; }
-  .foto-slot-btns button { font-size: 11px; padding: 4px 8px; }
-
-  .fullscreen-modal {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92);
-    z-index: 10000; align-items: center; justify-content: center; padding: 2rem;
-    cursor: zoom-out;
-  }
-  .fullscreen-modal.open { display: flex; }
-  .fullscreen-modal img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+  .foto-preview img { width: 100%; height: 100%; object-fit: cover; }
+  .foto-actions { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .foto-btn-row { display: flex; gap: 6px; }
+  .foto-btn-row button { flex: 1; font-size: 12px; padding: 6px 8px; }
 
   .field-group { display: flex; flex-direction: column; gap: 4px; }
   .field-label { font-family: 'Cinzel', serif; font-size: 10px; color: var(--text3); letter-spacing: 0.8px; text-transform: uppercase; }
@@ -316,9 +297,7 @@
     display: flex; justify-content: space-between; align-items: center;
     margin-top: 1.25rem; padding-top: 1rem;
     border-top: 1px solid var(--border);
-    gap: 8px; flex-wrap: wrap;
   }
-  .nav-footer-right { display: flex; gap: 8px; align-items: center; }
 
   .card-section {
     background: var(--bg2); border: 1px solid var(--border);
@@ -334,7 +313,7 @@
     background: transparent; border: 1px solid transparent;
     border-radius: var(--radius); font-size: 16px; line-height: 1;
   }
-  .perk-remove:hover { background: rgba(135, 32, 139, 0.15); border-color: var(--red); }
+  .perk-remove:hover { background: rgba(139,32,32,0.15); border-color: var(--red); }
 
   .table-wrap { overflow-x: auto; margin-bottom: 8px; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -380,17 +359,11 @@
     .grid-4 { grid-template-columns: 1fr 1fr; }
     .home-title { font-size: 17px; }
   }
-
 </style>
 </head>
 <body>
 
 <div class="loading-overlay" id="loadingOverlay">Carregando fichas...</div>
-
-<!-- MODAL: imagem em tela cheia -->
-<div class="fullscreen-modal" id="fullscreenModal" onclick="fecharFullscreen()">
-  <img id="fsImg" src="" alt="Foto ampliada">
-</div>
 
 <!-- HOME -->
 <div id="home" class="screen">
@@ -441,25 +414,15 @@
     </div>
 
     <div class="foto-wrap">
-      <div class="foto-slot">
-        <span class="foto-slot-label">Foto 1</span>
-        <div class="foto-preview" id="fotoPreview1">👤</div>
-        <div class="foto-slot-btns">
-          <button type="button" onclick="document.getElementById('f_foto_input1').click()">📷</button>
-          <button type="button" class="btn-danger" onclick="removerFoto(1)">✕</button>
+      <div class="foto-preview" id="fotoPreview">👤</div>
+      <div class="foto-actions">
+        <label class="field-label">Foto do Personagem</label>
+        <div class="foto-btn-row">
+          <button type="button" onclick="document.getElementById('f_foto_input').click()">📷 Escolher da galeria</button>
+          <button type="button" class="btn-danger" onclick="removerFoto()">Remover</button>
         </div>
-        <input type="file" id="f_foto_input1" accept="image/*" style="display:none" onchange="onFotoSelecionada(event,1)">
+        <input type="file" id="f_foto_input" accept="image/*" style="display:none" onchange="onFotoSelecionada(event)">
       </div>
-      <div class="foto-slot">
-        <span class="foto-slot-label">Foto 2</span>
-        <div class="foto-preview" id="fotoPreview2">👤</div>
-        <div class="foto-slot-btns">
-          <button type="button" onclick="document.getElementById('f_foto_input2').click()">📷</button>
-          <button type="button" class="btn-danger" onclick="removerFoto(2)">✕</button>
-        </div>
-        <input type="file" id="f_foto_input2" accept="image/*" style="display:none" onchange="onFotoSelecionada(event,2)">
-      </div>
-      <div class="foto-hint">Arraste a foto para girar. Clique para ver em tela cheia.</div>
     </div>
 
     <div class="grid-2">
@@ -499,10 +462,7 @@
 
     <div class="nav-footer">
       <span></span>
-      <div class="nav-footer-right">
-        <button class="btn-primary" data-save="1" onclick="salvarFicha()">💾 Salvar</button>
-        <button class="btn-primary" onclick="goPage(2)">Próximo →</button>
-      </div>
+      <button class="btn-primary" onclick="goPage(2)">Próximo →</button>
     </div>
   </div>
 </div>
@@ -549,10 +509,7 @@
     </div>
     <div class="nav-footer">
       <button onclick="goPage(1)">← Anterior</button>
-      <div class="nav-footer-right">
-        <button class="btn-primary" data-save="1" onclick="salvarFicha()">💾 Salvar</button>
-        <button class="btn-primary" onclick="goPage(3)">Próximo →</button>
-      </div>
+      <button class="btn-primary" onclick="goPage(3)">Próximo →</button>
     </div>
   </div>
 </div>
@@ -581,10 +538,7 @@
     <button class="btn-add" onclick="addItem()">+ Adicionar item</button>
     <div class="nav-footer">
       <button onclick="goPage(2)">← Anterior</button>
-      <div class="nav-footer-right">
-        <button class="btn-primary" data-save="1" onclick="salvarFicha()">💾 Salvar</button>
-        <button class="btn-primary" onclick="goPage(4)">Próximo →</button>
-      </div>
+      <button class="btn-primary" onclick="goPage(4)">Próximo →</button>
     </div>
   </div>
 </div>
@@ -769,12 +723,8 @@ function loadFichaToForm(f) {
   v('f_classe', f.classe); v('f_classe2', f.classe2);
   v('f_pericia', f.pericia); v('f_raca', f.raca);
 
-  fotos = {
-    1: { data: f.foto1 ?? f.foto ?? '', rot: f.foto1_rot || 0 },
-    2: { data: f.foto2 ?? '', rot: f.foto2_rot || 0 }
-  };
-  atualizarFotoPreview(1);
-  atualizarFotoPreview(2);
+  fotoAtual = f.foto || '';
+  atualizarFotoPreview();
 
   const ef = document.getElementById('extraFields');
   ef.innerHTML = '';
@@ -787,17 +737,20 @@ function loadFichaToForm(f) {
   applyReadonly();
 }
 
-// ── FOTOS (2 slots) ──
-let fotos = { 1: { data: '', rot: 0 }, 2: { data: '', rot: 0 } };
+// ── FOTO DO PERSONAGEM ──
+let fotoAtual = '';
 
-function atualizarFotoPreview(slot) {
-  const prev = document.getElementById('fotoPreview' + slot);
+function atualizarFotoPreview() {
+  const prev = document.getElementById('fotoPreview');
   if (!prev) return;
-  const f = fotos[slot];
-  prev.innerHTML = f.data ? `<img src="${f.data}" style="transform:rotate(${f.rot}deg)" alt="Foto ${slot}">` : '👤';
+  if (fotoAtual) {
+    prev.innerHTML = `<img src="${fotoAtual}" alt="Foto">`;
+  } else {
+    prev.innerHTML = '👤';
+  }
 }
 
-function onFotoSelecionada(event, slot) {
+function onFotoSelecionada(event) {
   const file = event.target.files[0];
   if (!file) return;
   if (file.size > 1.5 * 1024 * 1024) {
@@ -806,60 +759,21 @@ function onFotoSelecionada(event, slot) {
     return;
   }
   const reader = new FileReader();
-  reader.onload = e => { fotos[slot] = { data: e.target.result, rot: 0 }; atualizarFotoPreview(slot); };
+  reader.onload = e => {
+    fotoAtual = e.target.result;
+    atualizarFotoPreview();
+  };
   reader.readAsDataURL(file);
 }
 window.onFotoSelecionada = onFotoSelecionada;
 
-function removerFoto(slot) {
-  fotos[slot] = { data: '', rot: 0 };
-  atualizarFotoPreview(slot);
-  const input = document.getElementById('f_foto_input' + slot);
+function removerFoto() {
+  fotoAtual = '';
+  atualizarFotoPreview();
+  const input = document.getElementById('f_foto_input');
   if (input) input.value = '';
 }
 window.removerFoto = removerFoto;
-
-function abrirFullscreen(slot) {
-  const f = fotos[slot];
-  if (!f.data) return;
-  const img = document.getElementById('fsImg');
-  img.src = f.data;
-  img.style.transform = `rotate(${f.rot}deg)`;
-  document.getElementById('fullscreenModal').classList.add('open');
-}
-function fecharFullscreen() { document.getElementById('fullscreenModal').classList.remove('open'); }
-window.fecharFullscreen = fecharFullscreen;
-
-function setupFotoInteracao(slot) {
-  const el = document.getElementById('fotoPreview' + slot);
-  if (!el) return;
-  let dragging = false, startX = 0, startRot = 0, moved = false;
-
-  function onDown(x) {
-    if (!fotos[slot].data) return;
-    dragging = true; moved = false; startX = x; startRot = fotos[slot].rot;
-  }
-  function onMove(x) {
-    if (!dragging) return;
-    const dx = x - startX;
-    if (Math.abs(dx) > 3) moved = true;
-    fotos[slot].rot = Math.round(startRot + dx);
-    atualizarFotoPreview(slot);
-  }
-  function onUp() {
-    if (dragging && !moved && fotos[slot].data) abrirFullscreen(slot);
-    dragging = false;
-  }
-
-  el.addEventListener('mousedown', e => { onDown(e.clientX); e.preventDefault(); });
-  window.addEventListener('mousemove', e => onMove(e.clientX));
-  window.addEventListener('mouseup', onUp);
-  el.addEventListener('touchstart', e => onDown(e.touches[0].clientX), { passive: true });
-  el.addEventListener('touchmove', e => onMove(e.touches[0].clientX), { passive: true });
-  el.addEventListener('touchend', onUp);
-}
-setupFotoInteracao(1);
-setupFotoInteracao(2);
 
 function readFichaFromForm() {
   const v = id => (document.getElementById(id) || {}).value || '';
@@ -888,8 +802,7 @@ function readFichaFromForm() {
     extraFields, classe: v('f_classe'), classe2: v('f_classe2'),
     pericia: v('f_pericia'), raca: v('f_raca'),
     especiais, supremas, itens, habilidades,
-    foto1: fotos[1].data || '', foto1_rot: fotos[1].rot || 0,
-    foto2: fotos[2].data || '', foto2_rot: fotos[2].rot || 0
+    foto: fotoAtual || ''
   };
 }
 
@@ -900,6 +813,7 @@ async function salvarFicha() {
   if (idx >= 0) fichas[idx] = data;
   await set(ref(db, 'fichas/' + data.id), data);
   showToast('Ficha salva!');
+  goHome();
 }
 window.salvarFicha = salvarFicha;
 
@@ -918,10 +832,7 @@ function renderHome() {
   empty.style.display = 'none';
   list.innerHTML = fichas.map(f => {
     const initials = (f.nome||'?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
-    const fotoPrincipal = f.foto1 || f.foto;
-    const avatarContent = fotoPrincipal
-      ? `<img src="${fotoPrincipal}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;transform:rotate(${f.foto1_rot||0}deg)">`
-      : esc(initials);
+    const avatarContent = f.foto ? `<img src="${f.foto}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : esc(initials);
     const editBtn  = isMestre
       ? `<button class="btn-icon" onclick="editFicha('${f.id}')" title="Editar">✏️</button>`
       : `<button class="btn-icon" onclick="editFicha('${f.id}')" title="Ver ficha">👁</button>`;
