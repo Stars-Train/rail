@@ -9,11 +9,11 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #101010; --bg2: #150f0c; --bg3: #16110b;
-    --border: #382c20; --border2: #683603;
-    --gold: #180c09; --gold2: #351d12; --gold-dim: #803f03;
-    --text: #ffffff; --text2: #804019; --text3: #ffffff;
-    --red: #8b4b20; --red2: #8d4209; --radius: 6px;
+    --bg: #0a0e14; --bg2: #0c1420; --bg3: #0d1a2b;
+    --border: #1e3a5f; --border2: #2c6bb0;
+    --gold: #0e1824; --gold2: #16324f; --gold-dim: #4a9eeb;
+    --text: #ffffff; --text2: #4a90c4; --text3: #ffffff;
+    --red: #b04a4a; --red2: #c25555; --radius: 6px;
   }
   body { font-family: 'Crimson Text', Georgia, serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 16px; line-height: 1.5; }
   ::-webkit-scrollbar { width: 6px; }
@@ -27,7 +27,7 @@
   input:focus, textarea:focus, select:focus { outline: none; border-color: var(--gold-dim); background: var(--bg3); }
   input[type="number"] { -moz-appearance: textfield; }
   input[type="number"]::-webkit-inner-spin-button { opacity: 0.3; }
-  select option { background: #2a201a; }
+  select option { background: #16243a; }
 
   body.readonly input, body.readonly textarea, body.readonly select {
     opacity: 0.85; background: var(--bg); border-color: var(--border); cursor: text;
@@ -36,7 +36,7 @@
   body.readonly .btn-add, body.readonly .btn-danger, body.readonly .perk-remove,
   body.readonly #addExtraBtn, body.readonly .new-btn, body.readonly .group-actions, body.readonly .foto-actions { display: none !important; }
   .readonly-badge {
-    display: none; background: #2a180a; border: 1px solid var(--gold-dim);
+    display: none; background: #0f2740; border: 1px solid var(--gold-dim);
     color: var(--gold-dim); font-family: 'Cinzel', serif; font-size: 11px;
     letter-spacing: 0.5px; padding: 4px 10px; border-radius: var(--radius);
   }
@@ -50,10 +50,10 @@
   button:hover { background: var(--bg3); color: var(--gold2); border-color: var(--gold-dim); }
   button:active { transform: scale(0.97); }
   .btn-primary { background: var(--bg3); border-color: var(--gold-dim); color: var(--gold); font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.5px; }
-  .btn-primary:hover { background: #2a1f18; color: var(--gold2); border-color: var(--gold); }
+  .btn-primary:hover { background: #182e46; color: var(--gold2); border-color: var(--gold); }
   .btn-icon { padding: 5px 9px; font-size: 15px; min-width: 30px; display: inline-flex; align-items: center; justify-content: center; }
   .btn-danger { color: var(--red2); border-color: transparent; }
-  .btn-danger:hover { background: rgba(139, 71, 32, 0.15); border-color: var(--red); color: #1c100b; }
+  .btn-danger:hover { background: rgba(178, 74, 74, 0.15); border-color: var(--red); color: #1c100b; }
   .btn-add { border-style: dashed; border-color: var(--border2); color: var(--text3); font-size: 13px; width: 100%; padding: 6px; margin-top: 4px; }
   .btn-add:hover { color: var(--gold); border-color: var(--gold-dim); }
   .btn-logout { background: transparent; border-color: var(--border); color: var(--text3); font-size: 12px; padding: 5px 10px; }
@@ -173,7 +173,7 @@
   .perk-item { display: flex; gap: 6px; align-items: center; }
   .perk-item input { flex: 1; }
   .perk-remove { padding: 3px 7px; color: var(--red2); background: transparent; border: 1px solid transparent; border-radius: var(--radius); font-size: 16px; line-height: 1; }
-  .perk-remove:hover { background: rgba(139, 94, 32, 0.15); border-color: var(--red); }
+  .perk-remove:hover { background: rgba(178, 94, 94, 0.15); border-color: var(--red); }
   .table-wrap { overflow-x: auto; margin-bottom: 8px; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   thead th { font-family: 'Cinzel', serif; font-size: 10px; color: var(--text3); letter-spacing: 0.7px; text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); background: var(--bg2); }
