@@ -9,22 +9,18 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg: #101010;
-    --bg2: #0d0810;
-    --bg3: #110710;
-    --border: #210830;
-    --border2: rgb(68, 20, 111);
-    --gold: #4d175b;
-    --gold2: #2a1035;
-    --gold-dim: #a644db;
-    --text: #ffffff;
-    --text2: #5e1980;
-    --text3: #ffffff;
-    --red: #54208b;
-    --red2: #b540c0;
-    --radius: 6px;
-  }
+  :root{
+    --bg: #0b0b10;
+    --bg2: #11111a;
+    --bg3: #171423;
+
+    --border: #44205e;
+    --border2: #6e1961;
+
+    --gold: #8d2eff;
+    --gold2: #6e1961;
+    --gold-dim: #b95dff;
+}
 
   body {
     font-family: 'Crimson Text', Georgia, serif;
@@ -50,10 +46,11 @@
     width: 100%;
     transition: border-color 0.2s;
   }
-  input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--gold-dim);
-    background: var(--bg3);
+  input:focus,
+  textarea:focus{
+    border-color:#b95dff;
+    box-shadow:0 0 8px rgba(185,93,255,.35);
+
   }
   input[type="number"] { -moz-appearance: textfield; }
   input[type="number"]::-webkit-inner-spin-button { opacity: 0.3; }
